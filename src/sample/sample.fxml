@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" prefHeight="532.0" prefWidth="359.0" vgap="10" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <TextArea fx:id="textArea" prefHeight="276.0" prefWidth="266.0" />
+      <Button mnemonicParsing="false" onAction="#leftUp" text="LeftUp" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#leftBottom" text="LeftBottom" GridPane.rowIndex="2" />
+      <Button mnemonicParsing="false" onAction="#rightUp" text="RightUp" GridPane.rowIndex="3" />
+      <Button mnemonicParsing="false" onAction="#rightBottom" text="RightBottom" GridPane.rowIndex="4" />
+      <TextArea fx:id="result" prefHeight="67.0" prefWidth="266.0" GridPane.rowIndex="6" />
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
