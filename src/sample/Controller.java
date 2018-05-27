@@ -33,35 +33,27 @@ public class Controller implements Initializable {
 
     public void leftUp(ActionEvent actionEvent) {
         String currentResult = algorithm.makeMove(3);
-        if(currentResult != null)
-            result.setText(currentResult);
-        else result.clear();
+        result.setText(currentResult);
         doSymbols();
     }
 
     public void rightBottom(ActionEvent actionEvent) {
         String currentResult = algorithm.makeMove(0);
-        if(currentResult != null)
-            result.setText(currentResult);
-        else result.clear();
+        result.setText(currentResult);
         doSymbols();
 
     }
 
     public void leftBottom(ActionEvent actionEvent) {
         String currentResult = algorithm.makeMove(2);
-        if(currentResult != null)
-            result.setText(currentResult);
-        else result.clear();
+        result.setText(currentResult);
         doSymbols();
 
     }
 
     public void rightUp(ActionEvent actionEvent) {
         String currentResult = algorithm.makeMove(1);
-        if(currentResult != null)
-            result.setText(currentResult);
-        else result.clear();
+        result.setText(currentResult);
         doSymbols();
     }
 }

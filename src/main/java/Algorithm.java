@@ -84,14 +84,14 @@ public class Algorithm {
         }
         ground = changeGround(ground, rabbitPosition, newPosition);
         rabbitPosition = newPosition.clone();
-        Integer result = runMinMax(0, 'W', rabbitPosition.clone(), cloneArrayChar(ground), Integer.MIN_VALUE, Integer.MAX_VALUE);
-        if (result == -1) {
+        if (!isFree(rabbitPosition, ground)) {
             return "Волки победили";
         }
-        if (result == -2) {
+        if (rabbitPosition.i == 0) {
             return "Заяц победил";
         }
-        return null;
+        runMinMax(0, 'W', rabbitPosition.clone(), cloneArrayChar(ground), Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return "";
     }
 
     Character[][] cloneArrayChar(Character[][] array) {
@@ -106,12 +106,6 @@ public class Algorithm {
         Position[] localWolfsPosition = getWolfsPosition(localGround);
         Position[] oldNewPosition = new Position[2];
         HashMap<String, Integer> moves = calculateMoves(localRabbitPosition, 'R', localGround);
-        if (!isFree(localRabbitPosition, localGround) && recursiveLevel == 0) {
-            return -1;
-        }
-        if (localRabbitPosition.i == 0 && recursiveLevel == 0) {
-            return -2;
-        }
         if (recursiveLevel >= levelAI * 2)
             return getBestMove(moves);
         int minMax = animal == 'R' ? 254 : 0;
