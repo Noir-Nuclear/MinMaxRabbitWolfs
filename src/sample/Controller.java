@@ -213,6 +213,7 @@ public class Controller implements Initializable {
             }
         }
 
+
         logTextArea.setText(t);
     }
 }
