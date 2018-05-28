@@ -5,9 +5,9 @@
 .button{
     -fx-pref-width: 52;
     -fx-pref-height: 159;
-    -fx-max-width: 159;
+    -fx-max-width: 90;
     -fx-min-height: 52;
-    -fx-border-width: 1px;
+    -fx-border-width: 2px;
     -fx-border-color: black;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .wolf-selected {
-    -fx-border-color: red;
+    -fx-border-style: dashed;
+    -fx-border-color: gold;
     -fx-border-width: 2px;
-    -fx-border-radius: 50%;
 }
