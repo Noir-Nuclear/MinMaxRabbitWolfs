@@ -69,6 +69,16 @@ public class Algorithm {
         return localWolfsPosition;
     }
 
+    public String isVictory() {
+        if (!isFree(rabbitPosition, ground)) {
+            return "Волки победили";
+        }
+        if (rabbitPosition.i == 0) {
+            return "Заяц победил";
+        }
+        return "";
+    }
+
     public Character[][] changeGround(Character[][] changedGround, Position oldPosition, Position newPosition) {
         Character[][] newGround = cloneArrayChar(changedGround);
         char buf = newGround[oldPosition.i][oldPosition.j];
@@ -93,14 +103,12 @@ public class Algorithm {
             rabbitPosition = playerPos.clone();
         }
 
-        if (!isFree(rabbitPosition, ground)) {
-            return "Волки победили";
+        if(!isVictory().equals("")) {
+            return isVictory();
         }
-        if (rabbitPosition.i == 0) {
-            return "Заяц победил";
-        }
+
         runMinMax(0, playerName == 'W' ? 'R' : 'W', rabbitPosition.clone(), cloneArrayChar(ground), Integer.MIN_VALUE, Integer.MAX_VALUE);
-        return "";
+        return isVictory();
     }
 
     Character[][] cloneArrayChar(Character[][] array) {
@@ -138,6 +146,7 @@ public class Algorithm {
             }
         } else {
             boolean isFinal = false;
+            boolean isFirst = true;
             for (int i = 0; i < 4; i++) {
                 Position newPosition = localWolfsPosition[i].clone();
                 newPosition.i += 1;
@@ -145,12 +154,14 @@ public class Algorithm {
                 for (int j = 0; j < 2; j++) {
                     newPosition.j += j * 2;
                     if (isAvailable(newPosition, new HashMap<>(), localGround, 'W')) {
+
                         Integer testValue = runMinMax(recursiveLevel + 1, 'R',
                                 localRabbitPosition, changeGround(localGround, localWolfsPosition[i], newPosition), alpha, beta);
-                        if (minMax < testValue) {
+                        if (minMax < testValue || isFirst) {
                             minMax = testValue;
                             oldNewPosition[0] = localWolfsPosition[i].clone();
                             oldNewPosition[1] = newPosition.clone();
+                            isFirst = false;
                         }
                         alpha = alpha < testValue ? testValue : alpha;
                         if (alpha > beta) {

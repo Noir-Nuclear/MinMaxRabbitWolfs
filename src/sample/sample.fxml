@@ -56,7 +56,7 @@
                 <RowConstraints maxHeight="325.999974155426" minHeight="10.0" prefHeight="249.60003051757812" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <TitledPane animated="false" prefHeight="344.0" prefWidth="268.0" text="Ходы игрока" GridPane.columnIndex="1">
+                <TitledPane animated="false" prefHeight="344.0" prefWidth="268.0" text="Игровые события" GridPane.columnIndex="1">
                     <content>
                         <TextArea fx:id="logTextArea" prefHeight="200.0" prefWidth="200.0" />
                     </content>

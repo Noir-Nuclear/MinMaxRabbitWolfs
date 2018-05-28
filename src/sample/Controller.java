@@ -3,7 +3,6 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -39,6 +38,7 @@ public class Controller implements Initializable {
         gameLevelSelect.setValue(1);
         startGameBtn.setOnMouseClicked((MouseEvent event) -> {
             Integer gmLvl = (Integer) gameLevelSelect.getValue();
+            logTextArea.clear();
             gameUseful.player player = (gameUseful.player) playerSelect.getSelectedToggle().getUserData();
             startGame(gmLvl, player);
         });
@@ -131,6 +131,9 @@ public class Controller implements Initializable {
         Position player = currentPlayerPosition.clone();
         Integer vecX = btnPosition.j - player.j;
         Integer vecY = btnPosition.i - player.i;
+        if(vecX == 0 && vecY == 0 && currentPlayer == gameUseful.player.Rabbit) {
+            return;
+        }
 
         if (Math.abs(vecX) < 2 && Math.abs(vecY) < 2 && notTargetBtn(btnId, "btn-white")) {
             if (vecX < 0) {
@@ -212,7 +215,6 @@ public class Controller implements Initializable {
                 t += line + "\n";
             }
         }
-
 
         logTextArea.setText(t);
     }
