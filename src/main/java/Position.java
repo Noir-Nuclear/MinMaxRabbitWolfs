@@ -4,7 +4,7 @@ public class Position implements Cloneable {
 
     public Integer i, j;
 
-    Position() {
+    public Position() {
         i = j = 0;
     }
 

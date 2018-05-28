@@ -1,0 +1,55 @@
+.play-ground {
+    -fx-background-color: grey;
+}
+
+.button{
+    -fx-pref-width: 52;
+    -fx-pref-height: 159;
+    -fx-max-width: 159;
+    -fx-min-height: 52;
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+}
+
+.btn-start {
+    -fx-pref-width: unset;
+    -fx-pref-height: unset;
+    -fx-max-width: unset;
+    -fx-min-height: unset;
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+}
+
+.btn-white {
+    -fx-background-color: #c0c0c0;
+}
+
+.btn-available.btn-white:hover {
+    -fx-background-color: #828282;
+    -fx-cursor: hand;
+}
+
+.btn-black {
+    -fx-background-color: #20272D;
+}
+
+.btn-available.btn-black:hover {
+    -fx-background-color: #4a5966;
+    -fx-cursor: hand;
+}
+
+.rabbit {
+    -fx-graphic: url("../resources/rabbit.jpg");
+    -fx-background-color: #20272D;
+}
+
+.wolf {
+    -fx-graphic: url("../resources/wolf.jpg");
+    -fx-background-color: #20272D;
+}
+
+.wolf-selected {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-border-radius: 50%;
+}

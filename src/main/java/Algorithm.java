@@ -1,5 +1,7 @@
 package main.java;
 
+import javafx.geometry.Pos;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,22 +77,29 @@ public class Algorithm {
         return newGround;
     }
 
-    public String makeMove(int i) {
-        Position newPosition = rabbitPosition.clone();
+    public String makeMove(int i, Position playerPos) {
+        Position newPosition = playerPos.clone();
+        Character playerName = ground[playerPos.i][playerPos.j];
+
         newPosition.i += new Double(Math.pow(-1, i % 2)).intValue();
         newPosition.j += new Double(Math.pow(-1, i < 2 ? 0 : 1)).intValue();
-        if (!isAvailable(newPosition, new HashMap<>(), ground, 'R')) {
+        if (!isAvailable(newPosition, new HashMap<>(), ground, playerName)) {
             return "Нельзя";
         }
-        ground = changeGround(ground, rabbitPosition, newPosition);
-        rabbitPosition = newPosition.clone();
+        ground = changeGround(ground, playerPos, newPosition);
+        playerPos = newPosition.clone();
+
+        if (playerName == 'R') {
+            rabbitPosition = playerPos.clone();
+        }
+
         if (!isFree(rabbitPosition, ground)) {
             return "Волки победили";
         }
         if (rabbitPosition.i == 0) {
             return "Заяц победил";
         }
-        runMinMax(0, 'W', rabbitPosition.clone(), cloneArrayChar(ground), Integer.MIN_VALUE, Integer.MAX_VALUE);
+        runMinMax(0, playerName == 'W' ? 'R' : 'W', rabbitPosition.clone(), cloneArrayChar(ground), Integer.MIN_VALUE, Integer.MAX_VALUE);
         return "";
     }
 
@@ -123,7 +132,7 @@ public class Algorithm {
                         oldNewPosition[1] = newPosition.clone();
                     }
                     beta = beta > testValue ? testValue : beta;
-                    if(alpha > beta)
+                    if (alpha > beta)
                         break;
                 }
             }
@@ -144,18 +153,20 @@ public class Algorithm {
                             oldNewPosition[1] = newPosition.clone();
                         }
                         alpha = alpha < testValue ? testValue : alpha;
-                        if(alpha > beta) {
+                        if (alpha > beta) {
                             isFinal = true;
                             break;
                         }
                     }
                 }
-                if(isFinal)
+                if (isFinal)
                     break;
             }
         }
         if (recursiveLevel == 0) {
-            rabbitPosition = localRabbitPosition.clone();
+            if(animal == 'R') {
+                rabbitPosition = oldNewPosition[1].clone();
+            }
             ground = changeGround(ground, oldNewPosition[0], oldNewPosition[1]);
         }
         return minMax;
@@ -192,4 +203,21 @@ public class Algorithm {
                 moves.get(newPosition.i.toString() + newPosition.j.toString()) == null;
     }
 
+    public Position findRabbit() {
+        Position rabbitPosition = new Position();
+
+        for (int i = 0; i < ground.length; i++) {
+            Character[] row = ground[i];
+            for (int j = 0; j < row.length; j++) {
+                Character item = row[j];
+                if (item == 'R') {
+                    rabbitPosition.i = i;
+                    rabbitPosition.j = j;
+                    break;
+                }
+            }
+        }
+
+        return rabbitPosition;
+    }
 }
