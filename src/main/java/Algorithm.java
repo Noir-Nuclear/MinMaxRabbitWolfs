@@ -87,6 +87,10 @@ public class Algorithm {
         return newGround;
     }
 
+    public void makeStart() {
+        runMinMax(0, 'R', rabbitPosition.clone(), cloneArrayChar(ground), Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
     public String makeMove(int i, Position playerPos) {
         Position newPosition = playerPos.clone();
         Character playerName = ground[playerPos.i][playerPos.j];

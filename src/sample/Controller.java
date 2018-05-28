@@ -112,6 +112,9 @@ public class Controller implements Initializable {
     public void startGame(Integer lvl, gameUseful.player player) {
         currentPlayer = player;
         algorithm = new Algorithm(lvl);
+        if(currentPlayer == gameUseful.player.Wolf) {
+            algorithm.makeStart();
+        }
         updateGround(algorithm.ground);
     }
 
